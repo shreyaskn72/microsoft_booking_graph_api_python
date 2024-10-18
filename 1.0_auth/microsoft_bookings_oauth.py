@@ -47,8 +47,8 @@ def exchange_token_with_code():
     TENANT_ID = MSBOOKING_TENANT_ID
     # After the user authorizes the application, they will be redirected back to the redirect URL
     # Extract the authorization code from the redirected URL
-    redirect_response = input("Paste the full URL you were redirected to: ")
-    code = redirect_response.split('code=')[1]
+
+    code = input("input the code query param")
 
     TOKEN_URL = f'https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token'
 
@@ -85,7 +85,7 @@ def exchange_token_with_code():
         ms_data = {
             "microsoft_access_token": token_json["access_token"],
             "microsoft_refresh_token": token_json["refresh_token"],
-            "microsoft_expires_in": d
+            "microsoft_expires_in": str(d)
         }
 
         with open('ms_data.json', 'w') as json_file:

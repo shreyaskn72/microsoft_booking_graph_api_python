@@ -24,6 +24,9 @@ def microsoft_get_access_token_from_refresh_token(token_file):
         #Load the JSON data into a dictionary
         token_dict = json.load(json_token_file)
 
+    date_format = "%Y-%m-%d %H:%M:%S"  # Define the format
+    token_dict["microsoft_expires_in"] = datetime.strptime(token_dict["microsoft_expires_in"], date_format)
+
     if token_dict["microsoft_expires_in"] and token_dict["microsoft_expires_in"] <= today:
         TENANT_ID = MSBOOKING_TENANT_ID
         TOKEN_URL = f'https://login.microsoftonline.com/{TENANT_ID}/oauth2/v2.0/token'
@@ -52,7 +55,7 @@ def microsoft_get_access_token_from_refresh_token(token_file):
                 ms_data = {
                     "microsoft_access_token": token_json["access_token"],
                     "microsoft_refresh_token": token_json["refresh_token"],
-                    "microsoft_expires_in": d
+                    "microsoft_expires_in": str(d)
                 }
 
                 with open(token_file, 'w') as json_file:
