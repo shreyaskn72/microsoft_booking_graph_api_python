@@ -41,3 +41,5 @@ def get_logged_in_user_details(microsoft_access_token):
 if __name__ == "__main__":
     microsoft_access_token = "token data" #input access token data obtained in step 2
     response_json = get_logged_in_user_details(microsoft_access_token)
+    print("response_json is")
+    print(json.dumps(response_json,indent=4))
