@@ -20,7 +20,7 @@ def get_booking_businesses_based_on_token(microsoft_access_token, query):
     # Make a GET request to retrieve meeting types
     response = requests.get(url=ms_business_final_url, headers=headers)
 
-    return response
+    return response.json()
 
 
 if __name__ == "__main__":
